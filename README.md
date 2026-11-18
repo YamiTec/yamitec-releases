@@ -1,41 +1,74 @@
-# Yami releases
+# Yami Releases & Distribution Hub
 
-Installers and updates for **Yami**, the YamiTec desktop companion: an astronaut at the top of your screen that you can talk to, that works offline and plugs into the Yamitec Orchestrator.
+Instaladores oficiais, atualizações e documentação central do **Yami**, o assistente desktop e companheiro astronauta da **YamiTec**: uma ilha interativa no topo da sua tela que opera offline e se conecta ao **YamiTec AI Orchestrator**.
 
-This repository holds only the published builds and the [wiki](https://github.com/YamiTec/yamitec-releases/wiki). It has no source code.
+Este repositório centraliza as compilações oficiais, o versionamento contínuo, a Wiki pública e a documentação da esteira de distribuição do ecossistema Yamitec.
 
-## Download
+---
 
-| Platform | Always the newest build |
-|---|---|
-| **Windows 10/11** | [`Yami-Windows-setup.exe`](https://github.com/YamiTec/yamitec-releases/releases/download/windows-latest/Yami-Windows-setup.exe) · [`Yami-Windows.msi`](https://github.com/YamiTec/yamitec-releases/releases/download/windows-latest/Yami-Windows.msi) |
-| **Linux** | [`Yami-Linux-x86_64.AppImage`](https://github.com/YamiTec/yamitec-releases/releases/download/linux-latest/Yami-Linux-x86_64.AppImage) |
+## ⬇️ Download
 
-Specific versions, plus the Linux `.deb`, `.rpm` and `SHA256SUMS`, are on the [releases page](https://github.com/YamiTec/yamitec-releases/releases).
+| Plataforma | Build Mais Recente | Formatos Adicionais |
+|---|---|---|
+| **Windows 10/11** | [`Yami-Windows-setup.exe`](https://github.com/YamiTec/yamitec-releases/releases/download/windows-latest/Yami-Windows-setup.exe) | [`Yami-Windows.msi`](https://github.com/YamiTec/yamitec-releases/releases/download/windows-latest/Yami-Windows.msi) |
+| **Linux (x86_64)** | [`Yami-Linux-x86_64.AppImage`](https://github.com/YamiTec/yamitec-releases/releases/download/linux-latest/Yami-Linux-x86_64.AppImage) | `.deb` (Debian/Ubuntu) · `.rpm` (Fedora/openSUSE) |
+| **Android TV / Mobile** | [`YamiLauncher-latest.apk`](https://github.com/YamiTec/yamitec-releases/releases) | APKs de celular e launcher de projetor |
+| **Apple (macOS / iOS)** | Compilado via `xtool` no Orchestrator | Pacotes `.app` e `.ipa` sob demanda |
 
-## Install
+Versões específicas, changelogs e o arquivo `SHA256SUMS` estão disponíveis na [Página Oficial de Releases](https://github.com/YamiTec/yamitec-releases/releases).
 
-**Windows:** run the installer. It is not code-signed yet, so SmartScreen shows a warning the first time: **More info → Run anyway**.
+---
 
-**Linux:**
+## 📦 Como Instalar
 
+### Windows 10 / 11
+Execute o instalador baixado. Caso o Windows SmartScreen exiba aviso por ausência temporária de assinatura de código: clique em **Mais informações → Executar assim mesmo**.
+
+### Linux
 ```bash
-chmod +x Yami-Linux-*-x86_64.AppImage    # AppImage: then run it
-sudo apt install ./Yami-Linux-*-amd64.deb    # Debian/Ubuntu
-sudo dnf install ./Yami-Linux-*-x86_64.rpm   # Fedora/openSUSE
+# AppImage (execução direta):
+chmod +x Yami-Linux-*-x86_64.AppImage
+./Yami-Linux-*-x86_64.AppImage
+
+# Debian / Ubuntu:
+sudo apt install ./Yami-Linux-*-amd64.deb
+
+# Fedora / openSUSE:
+sudo dnf install ./Yami-Linux-*-x86_64.rpm
 ```
 
-Check a versioned download with `sha256sum -c SHA256SUMS --ignore-missing`.
+> **Dica**: Em compositores com suporte a `layer-shell` (COSMIC, KDE Plasma, Hyprland, Sway), a ilha ancora nativamente no topo da tela. No GNOME, ela abre como uma janela flutuante padrão.
 
-The island sits on the top edge on compositors with layer-shell (COSMIC, KDE Plasma, Hyprland, Sway…). On GNOME it opens as a regular window.
+---
 
-## Release tags
+## 🏷️ Tags de Release
 
-| Tag | What it is |
+| Tag | Finalidade |
 |---|---|
-| `windows-v*`, `linux-v*` | One fixed version |
-| `windows-latest`, `linux-latest` | Moving tags, replaced at every release with the newest build |
+| `windows-v*`, `linux-v*`, `android-v*` | Versões estáveis imutáveis |
+| `windows-latest`, `linux-latest` | Tags móveis apontando sempre para o build mais recente |
 
-## Documentation
+---
 
-The [wiki](https://github.com/YamiTec/yamitec-releases/wiki) (in Portuguese) covers features, customization, security and privacy, architecture and how to publish.
+## 📚 Documentação Técnica da Esteira de Releases
+
+Toda a infraestrutura de builds do ecossistema agora está documentada em detalhes:
+
+1. **[🌐 Yamitec Ecosystem Hub](docs/ECOSYSTEM_HUB.md)**:
+   - Estrutura dos projetos integrados (`YamiTec-AI-Orchestrator`, `yamitec-yami`, `yamitec-releases`).
+   - Diagrama de arquitetura unificada e uso do CLI `yamitec-hub.ps1`.
+
+2. **[🛰️ Guia de Builds Remotos via MCP](docs/MCP_REMOTE_BUILD_GUIDE.md)**:
+   - Como conectar outro computador (Claude Desktop, Antigravity, Cursor) ao Orchestrator via MCP over SSE (`/mcp/sse`).
+   - Como disparar compilações no servidor central por comandos em linguagem natural sem sobrecarregar a máquina cliente.
+
+3. **[🍏 Compilação Cross-Platform com `xtool`](docs/XTOOL_CROSS_COMPILATION.md)**:
+   - Como o Orchestrator compila o projeto `NotchBuddy` (SwiftUI para iOS e macOS) em ambientes Linux ou Windows (não-OSX).
+   - Uso da ferramenta `xtool` (`xtool-org/xtool`) e registro de SDKs Darwin da Apple sem necessidade de um Mac físico.
+
+---
+
+## 📖 Wiki e Comunidade
+
+- **Wiki Oficial (em Português)**: [Yamitec Wiki](https://github.com/YamiTec/yamitec-releases/wiki) — Guia de recursos, personalização do astronauta, segurança/privacidade e arquitetura de plugins.
+- **Organização GitHub**: [GitHub YamiTec](https://github.com/YamiTec)
